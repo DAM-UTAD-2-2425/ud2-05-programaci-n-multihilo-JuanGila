@@ -52,10 +52,10 @@ class Jugador extends Thread {
 				bingo = true;
 				System.out.println("¡El jugador " + idJugador + " canta BINGO!");
 				bombo.setBingo(true); // Notificamos que el Bingo ha terminado
-				bombo.notifyAll();
 			} else {
 				System.out.println("Jugador " + idJugador + " pendientes: " + carton);
 			}
+			this.notifyAll();
 		}
 	}
 }
@@ -91,9 +91,9 @@ class Presentador extends Thread {
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-			// Notificamos a los jugadores
-			this.notifyAll();
 		}
+		// Notificamos a los jugadores
+		this.notifyAll();
 	}
 }
 
